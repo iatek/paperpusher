@@ -1,0 +1,294 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Paperpusher by coffeedoughnuts</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Paperpusher</h1>
+        <p>A jQuery Plugin that takes a JSON object and gives you a Bootstrap compatible HTML form.</p>
+        <p class="view"><a href="https://github.com/coffeedoughnuts/paperpusher">View the Project on GitHub <small>coffeedoughnuts/paperpusher</small></a></p>
+        <ul>
+          <li><a href="https://github.com/coffeedoughnuts/paperpusher/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/coffeedoughnuts/paperpusher/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/coffeedoughnuts/paperpusher">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="paperpusher" class="anchor" href="#paperpusher"><span class="octicon octicon-link"></span></a>Paperpusher</h1>
+
+<p>A jQuery Plugin that takes a JSON object and gives you a Bootstrap compatible HTML form.</p>
+
+<h2>
+<a name="dependencies" class="anchor" href="#dependencies"><span class="octicon octicon-link"></span></a>Dependencies</h2>
+
+<p>While Paperpusher will work without Bootstrap, it creates a bootstrap-flavoured form for a reason. If you're not using Bootstrap in your project, the markup will be easy to style, and you could always go look at what Bootstrap are doing to their classes if you want to replicate any of it. (<em>see more at <a href="http://getbootstrap.com/">Bootstrap</a></em>)</p>
+
+<p>Paperpusher is a jQuery plugin, and thus depends on jQuery being loaded before you load in the paperpusher.js file.</p>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>You can download just the paperpusher.min.js file and include it after jQuery in your project for the minimal installation.</p>
+
+<p>To install via Bower:</p>
+
+<pre><code>bower install paperpusher
+</code></pre>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Before using Paperpusher in your project, include jQuery and paperpusher.js (or minified).</p>
+
+<p>Make yourself a container. This can be a form object, or just a div if you're not wanting to do traditional HTML submissions.</p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">'formid'</span> <span class="na">role=</span><span class="s">'form'</span> <span class="na">action=</span><span class="s">'submit.html'</span> <span class="na">method=</span><span class="s">'post'</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</pre></div>
+
+<p>Then you want to define your elements in Javascript. Each element is an input in your form. Here's an example, but see the Documentation section for all the options.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">elements</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="nx">type</span><span class="o">:</span> <span class="s1">'text'</span><span class="p">,</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s1">'fullname'</span><span class="p">,</span>
+        <span class="nx">label</span><span class="o">:</span> <span class="s1">'Full Name'</span><span class="p">,</span>
+        <span class="nx">placeholder</span><span class="o">:</span> <span class="s1">'e.g. Frank Black'</span><span class="p">,</span>
+        <span class="nx">help</span><span class="o">:</span> <span class="s1">'Please put your full name'</span><span class="p">,</span>
+        <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nx">type</span><span class="o">:</span> <span class="s1">'email'</span><span class="p">,</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s1">'email'</span><span class="p">,</span>
+        <span class="nx">label</span><span class="o">:</span> <span class="s1">'Email Address'</span><span class="p">,</span>
+        <span class="nx">placeholder</span><span class="o">:</span> <span class="s1">'e.g. frank@thepixies.com'</span><span class="p">,</span>
+        <span class="nx">help</span><span class="o">:</span> <span class="s1">'Use a *real* email address'</span><span class="p">,</span>
+        <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+
+<p>When you've got your elements, you need to define what buttons you want.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">buttons</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="nx">label</span><span class="o">:</span> <span class="s1">'Sign Up!'</span><span class="p">,</span>
+        <span class="nx">id</span><span class="o">:</span> <span class="s1">'submit-btn'</span><span class="p">,</span>
+        <span class="nx">submit</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">type</span><span class="o">:</span> <span class="s1">'success'</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nx">label</span><span class="o">:</span> <span class="s1">'Cancel'</span><span class="p">,</span>
+        <span class="nx">id</span><span class="o">:</span> <span class="s1">'cancel-btn'</span><span class="p">,</span>
+        <span class="nx">type</span><span class="o">:</span> <span class="s1">'warning'</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+
+<p>You don't actually have to define buttons. But buttons are pretty useful for forms. The ID part here is important - if you want to have your buttons do things other than submit, you'll use the ID to hook onto a click event.</p>
+
+<p>You can then initiate the form!</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'#formid'</span><span class="p">).</span><span class="nx">paperPusher</span><span class="p">({</span>
+    <span class="nx">elements</span><span class="o">:</span> <span class="nx">elements</span><span class="p">,</span>
+    <span class="nx">buttons</span><span class="o">:</span> <span class="nx">buttons</span><span class="p">,</span>
+    <span class="nx">prepend</span><span class="o">:</span> <span class="kc">true</span>
+<span class="p">});</span>
+</pre></div>
+
+<p>That's it!</p>
+
+<h2>
+<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
+
+<h3>
+<a name="paperpusher-1" class="anchor" href="#paperpusher-1"><span class="octicon octicon-link"></span></a>Paperpusher</h3>
+
+<h4>
+<a name="elements---array" class="anchor" href="#elements---array"><span class="octicon octicon-link"></span></a>elements - <em>array</em>
+</h4>
+
+<p>Array of Objects that describe the form's elements. Documentation on an 'element' is below.</p>
+
+<h4>
+<a name="buttons---array" class="anchor" href="#buttons---array"><span class="octicon octicon-link"></span></a>buttons - <em>array</em>
+</h4>
+
+<p>Array of Objects that describe the form's buttons. Documentation on a 'button' is below.</p>
+
+<h4>
+<a name="prepend---boolean" class="anchor" href="#prepend---boolean"><span class="octicon octicon-link"></span></a>prepend - <em>boolean</em>
+</h4>
+
+<p><em>Default: false</em></p>
+
+<p>When True, this will prepend, rather than append, the form's markup to the parent selector.</p>
+
+<h3>
+<a name="elements" class="anchor" href="#elements"><span class="octicon octicon-link"></span></a>Elements</h3>
+
+<h4>
+<a name="type---string-required" class="anchor" href="#type---string-required"><span class="octicon octicon-link"></span></a>type - <em>string, required</em>
+</h4>
+
+<p>The type of field element. You can see a list of supported field types by running the command</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">$</span><span class="p">().</span><span class="nx">paperPusher</span><span class="p">(</span><span class="s1">'types'</span><span class="p">);</span>
+</pre></div>
+
+<h4>
+<a name="name---string-required" class="anchor" href="#name---string-required"><span class="octicon octicon-link"></span></a>name - <em>string, required</em>
+</h4>
+
+<p>This will be the field element's 'name' and 'id'. When a form is submitted this will be the value's key</p>
+
+<h4>
+<a name="label---string" class="anchor" href="#label---string"><span class="octicon octicon-link"></span></a>label - <em>string</em>
+</h4>
+
+<p>This label appears above the field and describes what the field is.</p>
+
+<h4>
+<a name="placeholder---string" class="anchor" href="#placeholder---string"><span class="octicon octicon-link"></span></a>placeholder - <em>string</em>
+</h4>
+
+<p>This is an HTML5 placeholder and appears in the field if it is empty. Useful for examples in your form. Only applicable in certain fields - such as text and email, rather than selects.</p>
+
+<h4>
+<a name="help---string" class="anchor" href="#help---string"><span class="octicon octicon-link"></span></a>help - <em>string</em>
+</h4>
+
+<p>Help text appears below the field and can be a good place to explain what a user needs to input here.</p>
+
+<h4>
+<a name="required---boolean" class="anchor" href="#required---boolean"><span class="octicon octicon-link"></span></a>required - <em>boolean</em>
+</h4>
+
+<p><em>Default: false</em></p>
+
+<p>If True, this attaches an HTML5 required tag to the element. Also adds a 'Required' label.</p>
+
+<h4>
+<a name="value---string" class="anchor" href="#value---string"><span class="octicon octicon-link"></span></a>value - <em>string</em>
+</h4>
+
+<p><em>Default: null</em></p>
+
+<p>If not null, this will be the starting value of this field. Will only work on applicable fields, such as text and email, rather than selects.</p>
+
+<h4>
+<a name="disabled---boolean" class="anchor" href="#disabled---boolean"><span class="octicon octicon-link"></span></a>disabled - <em>boolean</em>
+</h4>
+
+<p><em>Default: false</em></p>
+
+<p>If True, this will attach an HTML5 'disbaled' tag to the form element to grey it out.</p>
+
+<h4>
+<a name="options---array" class="anchor" href="#options---array"><span class="octicon octicon-link"></span></a>options - <em>array</em>
+</h4>
+
+<p>Only applicable to select fields, this is an array of objects that form the options for your select.</p>
+
+<p>      
+<strong>options[i].label - *string</strong>*</p>
+
+<p>      
+This should be the text that shows up in the select option. If not present, the label will be equal to the value.</p>
+
+<p>      
+<strong>options[i].value - *string, required</strong>*</p>
+
+<p>      
+This is the value of the select option. If there is no specified label, then it will also be the label.</p>
+
+<p>      
+<strong>options[i].selected - *boolean</strong>*</p>
+
+<p>      
+<em>Default: false</em></p>
+
+<p>      
+If True, this will preselect this option. There should only be one of these True in the Array.</p>
+
+<h4>
+<a name="events---object" class="anchor" href="#events---object"><span class="octicon octicon-link"></span></a>events - <em>object</em>
+</h4>
+
+<p>Here you can specify any events to be attached to this element. They should have keys that match valid jQuery events, and the value should be the function to run on that event. It accepts one argument, which is the element that it is attached to. Here's an example:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">events</span><span class="o">:</span> <span class="p">{</span>
+  <span class="nx">focus</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">element</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'You just focussed on '</span><span class="o">+</span><span class="nx">element</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3>
+<a name="buttons" class="anchor" href="#buttons"><span class="octicon octicon-link"></span></a>Buttons</h3>
+
+<h4>
+<a name="label---string-1" class="anchor" href="#label---string-1"><span class="octicon octicon-link"></span></a>label - <em>string</em>
+</h4>
+
+<p>This is the text that shows up in the button</p>
+
+<h4>
+<a name="id---string" class="anchor" href="#id---string"><span class="octicon octicon-link"></span></a>id - <em>string</em>
+</h4>
+
+<p>This is the ID of the button. Take note of this, as you may want to hook onto a click of this button using this ID.</p>
+
+<h4>
+<a name="type---string" class="anchor" href="#type---string"><span class="octicon octicon-link"></span></a>type - <em>string</em>
+</h4>
+
+<p><em>Default: 'default'</em></p>
+
+<p>This will be added as a class to the button with the prefix 'btn-'. In Bootstrap this affects the styling of the button, for example currently a button with a class of 'btn-primary' is blue, and 'btn-default' is white. See Bootstrap docs for more.</p>
+
+<h4>
+<a name="submit---boolean" class="anchor" href="#submit---boolean"><span class="octicon octicon-link"></span></a>submit - <em>boolean</em>
+</h4>
+
+<p><em>Default: false</em></p>
+
+<p>If True, this will set the button to be a submit button, and will submit the form.</p>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>Paperpusher is distributed under the MIT License. If you use this utility in a public environment, please attribute and link back to the github repo in your code.</p>
+
+<p>For more on the MIT License, look <a href="http://choosealicense.com/licenses/mit/">here</a>.</p>
+
+<h2>
+<a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
+
+<p>If you want to extend Paperpusher in any way, please do! If you think your work would be benificial to others, then I'm happy to accept pull requests.</p>
+
+<p>For more on pull requests, look <a href="http://oss-watch.ac.uk/resources/pullrequest">here</a>.</p>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/coffeedoughnuts">coffeedoughnuts</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
