@@ -1,0 +1,88 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+		<script src='bower_components/jquery/dist/jquery.min.js'></script>
+		<script src='bower_components/bootstrap/dist/js/bootstrap.min.js'></script>
+		<script src='paperpusher.js'></script>
+	</head>
+	<body>
+	<div class='container'>
+		<form id='parentForm' role='form'></form>
+	</div>
+	</body>
+	<script>
+		var elements = [
+			{
+				type:	'text',
+				name:	'fullname',
+				label:	'Full Name',
+				placeholder:	'e.g. Frank Black',
+				help:	'Please put your full name',
+				required: true,
+				value: null,
+				events:	{
+						focus:	function(element){
+							console.log('You focussed on '+element.id);
+						},
+						blur:	function(element){
+							console.log('Im blurry');
+						},
+						keyup:	function(element){
+							console.log('TYPING!');
+						}
+				}
+			},
+			{
+				type:	'email',
+				name:	'email',
+				label:	'Email Address',
+				placeholder:	'e.g. frank@thepixies.com',
+				help:	'Use a *real* email address',
+				required:	true,
+				value:	null,
+				disabled: true
+			},
+			{
+				type:	'select',
+				name:	'select',
+				label: 'T-Shirt Size',
+				options:	[
+					{
+						label:	'Small',
+						value:	's'
+					},
+					{
+						label:	'Medium',
+						value:	'm',
+						selected:	true
+					},
+					{
+						label:	'Large',
+						value:	'l'
+					}
+				]
+			}
+		];
+
+		var buttons = [
+			{
+				submit:	true,
+				type:	'success',
+				label:	'Save',
+				id:	'submit-btn'
+			},
+			{
+				submit: false,
+				type:	'warning',
+				label:	'Cancel',
+				id:	'cancel-btn'
+			}
+		]
+
+		$('#parentForm').paperPusher({
+			elements:	elements,
+			buttons:	buttons,
+			prepend: true
+		});
+	</script>
+</html>
