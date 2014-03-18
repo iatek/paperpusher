@@ -1,9 +1,9 @@
 // Paperpusher is a jQuery Plugin that takes a JSON object and gives you a
 // Bootstrap compatible HTML form.
 
-// It was written by Daniel Baker for Double Negative
+// It was written by Daniel Baker
 
-// Current repo is at http://stash/projects/PRODSYS/repos/paperpusher/
+// Current repo is at http://github.com/coffeedoughnuts/paperpusher
 // Full documentation should be in the included README.md file.
 
 (function( $ ) {
