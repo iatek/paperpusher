@@ -1,0 +1,30 @@
+{
+  "name": "paperpusher",
+  "main": "paperpusher.js",
+  "version": "1.0.0",
+  "authors": [
+    "Daniel Baker <danbaker@me.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/coffeedoughnuts/paperpusher.git"
+  },
+  "description": "A jQuery Plugin that takes a JSON object and gives you a Bootstrap compatible HTML form.",
+  "keywords": [
+    "Form",
+    "Generation",
+    "JSON"
+  ],
+  "license": "MIT",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.1.1"
+  }
+}
